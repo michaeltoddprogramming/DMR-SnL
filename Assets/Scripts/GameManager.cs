@@ -14,12 +14,7 @@ public class GameManager : MonoBehaviour
     {
         if (Instance == null)
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
+            // Debug.LogError("GameManager reference is misssing!");
         }
     }
 

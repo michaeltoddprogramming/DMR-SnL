@@ -1,32 +1,73 @@
-using UnityEngine;
 using UnityEngine.UI;
-
-// OKAY SO RN EVERYTHING IS BASED ON THIS BUTTON CLICK
-// I'M NOT SURE IF YOU WANT TO KEEP IT LIKE THIS OR IF YOU WANT TO CHANGE IT
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class DiceRoller : MonoBehaviour
 {
-    public Button rollDiceButton;
+    int roll;
 
     private bool isPlayerOneTurn = true;
 
-    void Start()
+    [SerializeField]
+    List<Sprite> die;
+
+    private void Start()
     {
-        rollDiceButton.onClick.AddListener(RollDice);
-        GameManager.Instance.UpdateButtonColor(rollDiceButton, isPlayerOneTurn);
+        GetComponent<SpriteRenderer>().gameObject.AddComponent<BoxCollider2D>();
+
     }
 
-    void RollDice()
+    private void OnMouseDown()
     {
-        int diceResult = Random.Range(1, 7);
-        string currentPlayer = isPlayerOneTurn ? "Player Uno" : "Player Dos";
-        Debug.Log(currentPlayer + " rolled a... " + diceResult + "what a legend!");
+        Debug.Log("Dice clicked");
+        RollDice();
+    }
 
-        // TODO: MOVE PLAYER BASED ON DICERESULT - @Daniel @Ruan
-        // NOT SURE IF YOU WILL NEED A CONTROLLER PER PLAYER OR JUST ONE CONTROLLER FOR BOTH
-        // I JUST MADE AN EMPTY PLAYERCONTROLLER
+    public void RandomImage()
+    {
+        roll = Random.Range(1, 7);
+        SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+        renderer.sprite = die[roll - 1];
+        Debug.Log("Random image set to " + roll);
+    }
+
+    public void SetImage()
+    {
+        SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+        renderer.sprite = die[roll - 1];
+    }
+
+    public void Roll(int temp)
+    {
+        roll = temp;
+        Animator animator = GetComponent<Animator>();
+        animator.Play("Roll", -1, 0f);
+        ShowRollResult();
+    }
+
+    public void RollDice()
+    {
+        roll = Random.Range(1, 7);
+        Animator animator = GetComponent<Animator>();
+        animator.Play("Roll", -1, 0f);
+        ShowRollResult();
+    }
+
+    private void ShowRollResult()
+    {
+        SetImage();
+        Debug.Log("Rolled a " + roll);
+        
+        string currentPlayer = isPlayerOneTurn ? "Player Uno" : "Player Dos";
+        Debug.Log(currentPlayer + " rolled a... " + roll + " what a legend!");
 
         isPlayerOneTurn = !isPlayerOneTurn;
-        GameManager.Instance.UpdateButtonColor(rollDiceButton, isPlayerOneTurn);
+    }
+
+    public int GetRoll()
+    {
+        Debug.Log("This function returns the final number: " + roll);
+        return roll;
     }
 }
