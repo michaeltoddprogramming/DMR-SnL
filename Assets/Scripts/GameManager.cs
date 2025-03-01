@@ -4,13 +4,16 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public GameManager gameManager;
-    public PlayerController playerController;
+    public PlayerController playerController1;
+    public PlayerController playerController2;
 
     public Color playerOneColor;
     public Color playerTwoColor;
     public int rollAmount;
 
     public bool rolled = false;
+
+    private int player = 0;
 
 
     // THIS AWAKE FUNCTION GUARDS THE SINGLETON INSTANCE OF THE GAME MANAGER
@@ -42,6 +45,15 @@ public class GameManager : MonoBehaviour
 
     public Color GetCurrentPlayerColor(bool isPlayerOneTurn)
     {
+        if(isPlayerOneTurn)
+        {
+            player = 1;
+        }
+        else
+        {
+            player = 2;
+        }
+
         return isPlayerOneTurn ? playerOneColor : playerTwoColor;
     }
 
@@ -58,6 +70,13 @@ public class GameManager : MonoBehaviour
     {
         rollAmount = amount;
 
-        playerController.allowMove(amount);
+        if(player == 1)
+        {
+            playerController1.allowMove(amount, 1);
+        }
+        else
+        {
+            playerController2.allowMove(amount, 2);
+        }
     }
 }

@@ -202,7 +202,7 @@ Transform:
   m_GameObject: {fileID: 157153175}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 337, y: 101.3, z: 2}
+  m_LocalPosition: {x: 337, y: 100, z: 2}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -248,8 +248,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1756648689}
-  player: {fileID: 157153178}
-  moveSpeed: 100
+  player1: {fileID: 157153178}
+  player2: {fileID: 2116518880}
+  moveSpeed: 3000
 --- !u!1 &324333503
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,8 +784,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 768cf914d8d13504ea8e52fb6b3ef215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
-  playerController: {fileID: 157153179}
+  gameManager: {fileID: 1756648689}
+  playerController1: {fileID: 157153179}
+  playerController2: {fileID: 2116518881}
   playerOneColor: {r: 1, g: 0.0460961, b: 0, a: 0}
   playerTwoColor: {r: 1, g: 0.97083807, b: 0, a: 0}
   rollAmount: 0
@@ -1107,8 +1109,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1756648689}
-  player: {fileID: 2116518880}
-  moveSpeed: 100
+  player1: {fileID: 157153178}
+  player2: {fileID: 2116518880}
+  moveSpeed: 300
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -26,8 +26,13 @@ public class DiceRoller : MonoBehaviour
     public void RollDice()
     {
         // Debug.Log("The button was clicked");
-     
-        int diceResult = Random.Range(1, 7);
+
+
+        
+        // int diceResult = Random.Range(1, 7);
+
+
+        int diceResult = 9;
         gameManager.setDiceRoll(diceResult);
 
         string currentPlayer = isPlayerOneTurn ? "Player Uno" : "Player Dos";
