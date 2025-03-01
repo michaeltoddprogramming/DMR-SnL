@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: d4150e9ea61817b458de9a0f6b9d7323
+guid: 80c6b634b23759a4d83a5ec8c083db5a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -158741451505817251
-    second: Game Piece_0
+      213: 4277536903036831660
+    second: STARTHOVER_0
+  - first:
+      213: -1844478230896896025
+    second: STARTHOVER_1
+  - first:
+      213: 7151501431025611421
+    second: STARTHOVER_2
+  - first:
+      213: 789873937652504743
+    second: STARTHOVER_3
+  - first:
+      213: -6409939743551953523
+    second: STARTHOVER_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,40 +108,27 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Game Piece_0
+      name: STARTHOVER_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 185
-        height: 189
+        width: 498
+        height: 114
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d59addbad790ccdf0800000000000000
-      internalID: -158741451505817251
+      spriteID: ca78223662ddc5b30800000000000000
+      internalID: 4277536903036831660
       vertices: []
       indices: 
       edges: []
@@ -138,7 +137,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: adb286c3c96562a47a21784eb11e354c
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +147,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Game Piece_0: -158741451505817251
+      STARTHOVER_0: 4277536903036831660
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

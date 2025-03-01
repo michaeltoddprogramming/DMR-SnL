@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: d4150e9ea61817b458de9a0f6b9d7323
+guid: 7ce324760ac24d34e93be9f11202fda9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -158741451505817251
-    second: Game Piece_0
+      213: 3123253542887901290
+    second: EXITBUTTON_0
+  - first:
+      213: 7786108351707702420
+    second: EXITBUTTON_1
+  - first:
+      213: 7121423341301236931
+    second: EXITBUTTON_2
+  - first:
+      213: -4140253018961950367
+    second: EXITBUTTON_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,40 +105,27 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Game Piece_0
+      name: EXITBUTTON_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 185
-        height: 189
+        width: 398
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d59addbad790ccdf0800000000000000
-      internalID: -158741451505817251
+      spriteID: a68405fac86085b20800000000000000
+      internalID: 3123253542887901290
       vertices: []
       indices: 
       edges: []
@@ -138,7 +134,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 31c2f33446965fb40b492cdffc42c320
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +144,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Game Piece_0: -158741451505817251
+      EXITBUTTON_0: 3123253542887901290
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

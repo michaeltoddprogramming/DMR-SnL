@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: d4150e9ea61817b458de9a0f6b9d7323
+guid: ced56fb26ed7d194291fdd323ff78a9f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -158741451505817251
-    second: Game Piece_0
+      213: -349554493310961100
+    second: STARTSTART_0
+  - first:
+      213: 7271542107985642107
+    second: STARTSTART_1
+  - first:
+      213: 5128236128888110807
+    second: STARTSTART_2
+  - first:
+      213: -3390223567656821933
+    second: STARTSTART_3
+  - first:
+      213: -6167805469782230518
+    second: STARTSTART_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -53,7 +65,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -96,40 +108,27 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Game Piece_0
+      name: STARTSTART_1
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 185
-        height: 189
+        width: 498
+        height: 114
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d59addbad790ccdf0800000000000000
-      internalID: -158741451505817251
+      spriteID: b7287cb5505b9e460800000000000000
+      internalID: 7271542107985642107
       vertices: []
       indices: 
       edges: []
@@ -138,7 +137,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 424e347f04a438440be6bf98c9fd9090
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +147,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Game Piece_0: -158741451505817251
+      STARTSTART_0: -349554493310961100
+      STARTSTART_1: 7271542107985642107
+      STARTSTART_2: 5128236128888110807
+      STARTSTART_3: -3390223567656821933
+      STARTSTART_4: -6167805469782230518
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

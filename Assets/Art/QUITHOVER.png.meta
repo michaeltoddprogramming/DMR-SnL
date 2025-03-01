@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: d4150e9ea61817b458de9a0f6b9d7323
+guid: 98ccce8b796778e4ebb1e6eaf3db56a2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -158741451505817251
-    second: Game Piece_0
+      213: -487237501534923093
+    second: QUITHOVER_0
+  - first:
+      213: 1760184244248964853
+    second: QUITHOVER_1
+  - first:
+      213: -1501492019088025559
+    second: QUITHOVER_2
+  - first:
+      213: 8134625018438609244
+    second: QUITHOVER_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,40 +105,27 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Game Piece_0
+      name: QUITHOVER_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 185
-        height: 189
+        width: 398
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d59addbad790ccdf0800000000000000
-      internalID: -158741451505817251
+      spriteID: ba613c7e21cfc39f0800000000000000
+      internalID: -487237501534923093
       vertices: []
       indices: 
       edges: []
@@ -138,7 +134,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 8e46d1a30428ada4ab763f6a01ba33ac
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +144,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Game Piece_0: -158741451505817251
+      QUITHOVER_0: -487237501534923093
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
