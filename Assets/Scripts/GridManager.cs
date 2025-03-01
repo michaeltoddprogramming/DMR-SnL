@@ -7,6 +7,8 @@ public class GridManager : MonoBehaviour
     public int gridSizeY = 10;
     public Transform tilePrefab;
     public float fontSizeMultiplier = 0.5f; // Fine-tune font size scaling (adjust as needed)
+    public Color alternateColor1 = new Color(243f / 255f, 253f / 255f, 207f / 255f); // RGB color
+    public Color alternateColor2 = new Color(158f / 255f, 220f / 255f, 221f / 255f); // RGB color
 
     private Vector2 tileSize;
 
@@ -32,61 +34,44 @@ public class GridManager : MonoBehaviour
 
     void GenerateGrid()
     {
-        int tileCount = 0;
         for (int y = 0; y < gridSizeY; y++)
         {
+            bool startWithAlternate = (gridSizeY - 1 - y) % 2 == 1; // Check if row is even (counting from the bottom)
+
             for (int x = 0; x < gridSizeX; x++)
             {
-                tileCount++;
                 int number = GetTileNumber(x, y);
                 Vector3 position = new Vector3(x * tileSize.x, (gridSizeY - 1 - y) * tileSize.y, 0);
-                Debug.Log($"Tile {number} at (x={x}, y={y}) should be at world position {position}");
                 Transform tile = Instantiate(tilePrefab, position, Quaternion.identity);
                 tile.position = position;
-                Debug.Log($"Tile {number} position before parenting: {tile.position}");
                 tile.parent = transform;
-                Debug.Log($"Tile {number} final world position: {tile.TransformPoint(Vector3.zero)}");
+
+                // Apply color alternation based on row parity
+                bool isAlternate = (x % 2 == 0) ? startWithAlternate : !startWithAlternate;
+
+                Renderer tileRenderer = tile.GetComponent<Renderer>();
+                if (tileRenderer != null)
+                {
+                    tileRenderer.material.color = isAlternate ? alternateColor1 : alternateColor2;
+                }
 
                 Transform numberTextTransform = tile.Find("NumberText");
                 if (numberTextTransform != null)
                 {
-                    Debug.Log($"NumberText for Tile {number} local position: {numberTextTransform.localPosition}");
-                    Debug.Log($"NumberText for Tile {number} world position: {numberTextTransform.TransformPoint(Vector3.zero)}");
                     TMP_Text textComponent = numberTextTransform.GetComponent<TMP_Text>();
                     if (textComponent != null)
                     {
                         textComponent.text = number.ToString();
-                        // Adjust font size to fit within the square
                         float baseFontSize = 10f;
                         textComponent.fontSize = baseFontSize * tileSize.x * fontSizeMultiplier;
-                        // Ensure text alignment is centered
                         textComponent.alignment = TextAlignmentOptions.Center;
-                        // Enable auto-sizing to fit within bounds
                         textComponent.enableAutoSizing = true;
                         textComponent.fontSizeMin = 5f;
-                        textComponent.fontSizeMax = 20f;
-                        // Log rendering order details
-                        Renderer tileRenderer = tile.GetComponent<Renderer>();
-                        if (tileRenderer != null)
-                        {
-                            Debug.Log($"Tile {number} SpriteRenderer sorting layer: {tileRenderer.sortingLayerName}, order: {tileRenderer.sortingOrder}");
-                        }
-                        Debug.Log($"NumberText for Tile {number} z-position: {numberTextTransform.position.z}");
-                        Debug.Log($"NumberText for Tile {number} font size set to: {textComponent.fontSize}");
-                        Debug.Log($"NumberText for Tile {number} bounds size: {textComponent.bounds.size}");
+                        textComponent.fontSizeMax = 26f;
                     }
-                    else
-                    {
-                        Debug.LogError($"TMP_Text component not found on NumberText for tile {number} at position ({x}, {y}).");
-                    }
-                }
-                else
-                {
-                    Debug.LogError($"NumberText child not found in tile {number} at position ({x}, {y}).");
                 }
             }
         }
-        Debug.Log($"Total tiles generated: {tileCount}");
     }
 
     int GetTileNumber(int x, int y)

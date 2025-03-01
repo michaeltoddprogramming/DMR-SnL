@@ -725,6 +725,7 @@ MonoBehaviour:
   gridSizeY: 10
   tilePrefab: {fileID: 3840282546221726152, guid: 0e3cd0cfd5d21bb4aa02461a3faceaa7, type: 3}
   fontSizeMultiplier: 0.5
+  alternateColor: {r: 0.9529412, g: 0.99215686, b: 0.8117647, a: 1}
 --- !u!1 &1855659849
 GameObject:
   m_ObjectHideFlags: 0
