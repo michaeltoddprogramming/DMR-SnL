@@ -6,6 +6,7 @@ public class GridManager : MonoBehaviour
     public int gridSizeX = 10;
     public int gridSizeY = 10;
     public Transform tilePrefab;
+    public float fontSizeMultiplier = 0.5f; // Fine-tune font size scaling (adjust as needed)
 
     private Vector2 tileSize;
 
@@ -21,6 +22,7 @@ public class GridManager : MonoBehaviour
         if (tileRenderer != null)
         {
             tileSize = new Vector2(tileRenderer.bounds.size.x, tileRenderer.bounds.size.y);
+            Debug.Log($"Calculated tileSize: {tileSize}");
         }
         else
         {
@@ -40,20 +42,38 @@ public class GridManager : MonoBehaviour
                 Vector3 position = new Vector3(x * tileSize.x, (gridSizeY - 1 - y) * tileSize.y, 0);
                 Debug.Log($"Tile {number} at (x={x}, y={y}) should be at world position {position}");
                 Transform tile = Instantiate(tilePrefab, position, Quaternion.identity);
-                tile.position = position; // Explicitly set position after instantiation
+                tile.position = position;
                 Debug.Log($"Tile {number} position before parenting: {tile.position}");
                 tile.parent = transform;
-                Debug.Log($"Tile {number} final world position: {tile.TransformPoint(Vector3.zero)}"); // Log world position
+                Debug.Log($"Tile {number} final world position: {tile.TransformPoint(Vector3.zero)}");
 
-                Transform numberTextTransform = tile.Find("NumberText/NumberText");
+                Transform numberTextTransform = tile.Find("NumberText");
                 if (numberTextTransform != null)
                 {
+                    Debug.Log($"NumberText for Tile {number} local position: {numberTextTransform.localPosition}");
+                    Debug.Log($"NumberText for Tile {number} world position: {numberTextTransform.TransformPoint(Vector3.zero)}");
                     TMP_Text textComponent = numberTextTransform.GetComponent<TMP_Text>();
                     if (textComponent != null)
                     {
                         textComponent.text = number.ToString();
+                        // Adjust font size to fit within the square
                         float baseFontSize = 10f;
-                        textComponent.fontSize = baseFontSize * tileSize.x / tilePrefab.localScale.x;
+                        textComponent.fontSize = baseFontSize * tileSize.x * fontSizeMultiplier;
+                        // Ensure text alignment is centered
+                        textComponent.alignment = TextAlignmentOptions.Center;
+                        // Enable auto-sizing to fit within bounds
+                        textComponent.enableAutoSizing = true;
+                        textComponent.fontSizeMin = 5f;
+                        textComponent.fontSizeMax = 20f;
+                        // Log rendering order details
+                        Renderer tileRenderer = tile.GetComponent<Renderer>();
+                        if (tileRenderer != null)
+                        {
+                            Debug.Log($"Tile {number} SpriteRenderer sorting layer: {tileRenderer.sortingLayerName}, order: {tileRenderer.sortingOrder}");
+                        }
+                        Debug.Log($"NumberText for Tile {number} z-position: {numberTextTransform.position.z}");
+                        Debug.Log($"NumberText for Tile {number} font size set to: {textComponent.fontSize}");
+                        Debug.Log($"NumberText for Tile {number} bounds size: {textComponent.bounds.size}");
                     }
                     else
                     {
