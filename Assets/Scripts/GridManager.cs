@@ -5,16 +5,27 @@ public class GridManager : MonoBehaviour
 {
     public int gridSizeX = 10;
     public int gridSizeY = 10;
-    public float originalSquareSize = 1f;
-    public float scaleMultiplier = 2f;
-
-    private float tileSize;
     public Transform tilePrefab;
+
+    private Vector2 tileSize;
 
     void Start()
     {
-        tileSize = originalSquareSize * scaleMultiplier;
+        CalculateTileSize();
         GenerateGrid();
+    }
+
+    void CalculateTileSize()
+    {
+        Renderer tileRenderer = tilePrefab.GetComponent<Renderer>();
+        if (tileRenderer != null)
+        {
+            tileSize = new Vector2(tileRenderer.bounds.size.x, tileRenderer.bounds.size.y);
+        }
+        else
+        {
+            Debug.LogError("Tile prefab does not have a Renderer component.");
+        }
     }
 
     void GenerateGrid()
@@ -26,7 +37,7 @@ public class GridManager : MonoBehaviour
             {
                 tileCount++;
                 int number = GetTileNumber(x, y);
-                Vector3 position = new Vector3(x * tileSize, (gridSizeY - 1 - y) * tileSize, 0);
+                Vector3 position = new Vector3(x * tileSize.x, (gridSizeY - 1 - y) * tileSize.y, 0);
                 Debug.Log($"Tile {number} at (x={x}, y={y}) should be at world position {position}");
                 Transform tile = Instantiate(tilePrefab, position, Quaternion.identity);
                 tile.position = position; // Explicitly set position after instantiation
@@ -42,7 +53,7 @@ public class GridManager : MonoBehaviour
                     {
                         textComponent.text = number.ToString();
                         float baseFontSize = 10f;
-                        textComponent.fontSize = baseFontSize * tileSize / originalSquareSize;
+                        textComponent.fontSize = baseFontSize * tileSize.x / tilePrefab.localScale.x;
                     }
                     else
                     {
