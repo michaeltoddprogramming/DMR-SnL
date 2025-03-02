@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
         Orange
     }
 
-    public int numberOfPlayers = 2; // Default number of players
+    // public PlayerCount numberOfPlayers ; // Default number of players
     public GameObject playerPrefab; // Prefab for player pieces
     public Transform[] playerStartPositions; // Array of start positions for players
     public PlayerColor[] playerColors; // Array of player colors
@@ -21,10 +21,14 @@ public class GameManager : MonoBehaviour
 
     private List<GameObject> players;
     private int currentPlayerIndex = 0;
+    private int numberOfPlayers;
+
 
     void Start()
     {
         Debug.Log("GameManager Start() called.");
+        numberOfPlayers = PlayerPrefs.GetInt("PlayerCount", 2);
+        Debug.Log("This is the player count in scene 2: " + numberOfPlayers);
         ValidateSetup();
         InitializePlayers();
         StartTurn();
@@ -58,6 +62,7 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < numberOfPlayers; i++)
         {
+            Debug.Log("THis is spawning a polayer");
             if (i >= playerStartPositions.Length)
             {
                 Debug.LogError($"Not enough start positions! Tried to access index {i}, but only {playerStartPositions.Length} available.");

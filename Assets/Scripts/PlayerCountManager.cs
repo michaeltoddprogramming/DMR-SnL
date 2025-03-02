@@ -8,9 +8,37 @@ public class PlayerCountManager : MonoBehaviour
 
     private int currentPlayerCount = 2;  // Default to 2
 
+    public AudioSource audioSource;
+    public AudioClip clickSound;
+
     void Start()
     {
         UpdatePlayerCount();  // Ensure correct sprite on start
+    }
+
+    void Update()
+    {
+        Debug.Log("THis is the player count: " + currentPlayerCount);
+
+        if(Input.GetKeyDown(KeyCode.RightArrow) && currentPlayerCount < 6)
+        {
+            IncreasePlayerCount();
+            PlaySound();
+        }
+
+        if(Input.GetKeyDown(KeyCode.LeftArrow) && currentPlayerCount > 2)
+        {
+            DecreasePlayerCount();
+            PlaySound();
+        }
+    }
+
+    private void PlaySound()
+    {
+        if (audioSource != null && clickSound != null)
+        {
+            audioSource.PlayOneShot(clickSound); 
+        }
     }
 
     public void IncreasePlayerCount()
@@ -34,5 +62,7 @@ public class PlayerCountManager : MonoBehaviour
     private void UpdatePlayerCount()
     {
         playerCountImage.sprite = numberSprites[currentPlayerCount - 2];  
+
+        PlayerPrefs.SetInt("PlayerCount", currentPlayerCount);
     }
 }
