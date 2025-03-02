@@ -6,9 +6,9 @@ public class GridManager : MonoBehaviour
     public int gridSizeX = 10;
     public int gridSizeY = 10;
     public Transform tilePrefab;
-    public float fontSizeMultiplier = 0.5f; // Fine-tune font size scaling (adjust as needed)
-    public Color alternateColor1 = new Color(243f / 255f, 253f / 255f, 207f / 255f); // RGB color
-    public Color alternateColor2 = new Color(158f / 255f, 220f / 255f, 221f / 255f); // RGB color
+    public float fontSizeMultiplier = 0.5f;
+    public Color alternateColor1 = new Color(243f / 255f, 253f / 255f, 207f / 255f);
+    public Color alternateColor2 = new Color(158f / 255f, 220f / 255f, 221f / 255f);
 
     private Vector2 tileSize;
 
