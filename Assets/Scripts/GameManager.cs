@@ -43,7 +43,8 @@ public class GameManager : MonoBehaviour
             { 84, 94 },
             { 85, 53 },
             { 91, 69 },
-            { 96, 24 }
+            { 96, 24 },
+            { 99, 69 }
     };
 
     void Start()

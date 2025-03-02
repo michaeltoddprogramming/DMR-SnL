@@ -7,7 +7,7 @@ public class GridManager : MonoBehaviour
     public int gridSizeY = 10;
     public Transform tilePrefab;
     public float fontSizeMultiplier = 0.5f;
-    public Color alternateColor1 = new Color(243f / 255f, 253f / 255f, 207f / 255f);
+    public Color alternateColor1 = new Color(238f / 255f, 161f / 255f, 156f / 255f);
     public Color alternateColor2 = new Color(158f / 255f, 220f / 255f, 221f / 255f);
 
     private Vector2 tileSize;
