@@ -14,12 +14,12 @@ public class GameManager : MonoBehaviour
         Orange
     }
 
-    public int numberOfPlayers = 2; // Default number of players
     public GameObject playerPrefab; // Prefab for player pieces
     public Transform[] playerStartPositions; // Array of start positions for players
     public PlayerColor[] playerColors; // Array of player colors
     public DiceRoller diceRoller; // Reference to the DiceRoller
     public GridManager gridManager; // Reference to the GridManager
+    private int numberOfPlayers; // Default to 2 players
 
     private List<GameObject> players;
     private int currentPlayerIndex = 0;
@@ -49,6 +49,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Debug.Log("GameManager Start() called.");
+        numberOfPlayers = PlayerPrefs.GetInt("PlayerCount", 2);
+        
         ValidateSetup();
         InitializePlayers();
         StartTurn();

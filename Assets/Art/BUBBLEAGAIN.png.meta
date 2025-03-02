@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: cf78ec6cdc4c00047be16b405cd04839
+guid: dcd3539edd6406c4d9d06c85fa6c3862
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4927150983800236596
-    second: grid_sprite_0
+      213: -5314055574558292256
+    second: BUBBLEAGAIN_0
+  - first:
+      213: 1220017247738863343
+    second: BUBBLEAGAIN_1
+  - first:
+      213: -5356648652485134498
+    second: BUBBLEAGAIN_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,53 +102,71 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: grid_sprite_0
+      name: BUBBLEAGAIN_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 128
+        width: 2466
+        height: 2244
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cc5dedf094e3f9bb0800000000000000
-      internalID: -4927150983800236596
+      spriteID: 0e6c4c92c9ea046b0800000000000000
+      internalID: -5314055574558292256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BUBBLEAGAIN_1
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 0
+        width: 2463
+        height: 2244
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fee135f093f5ee010800000000000000
+      internalID: 1220017247738863343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BUBBLEAGAIN_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 529
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e577c0a6e6c59a5b0800000000000000
+      internalID: -5356648652485134498
       vertices: []
       indices: 
       edges: []
@@ -151,7 +175,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 9e79a9452a24e09479a3e268ab7931ec
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +185,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      grid_sprite_0: -4927150983800236596
+      BUBBLEAGAIN_0: -5314055574558292256
+      BUBBLEAGAIN_1: 1220017247738863343
+      BUBBLEAGAIN_2: -5356648652485134498
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
