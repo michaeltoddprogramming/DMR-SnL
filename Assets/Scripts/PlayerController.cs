@@ -1,78 +1,48 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-    // public static PlayerController Instance;
     public GameManager gameManager;
     public Rigidbody2D player;
     
-    private bool canMove = false;
-    private int moveAmount;
-    private int count = 0;
-    public float moveSpeed = 100f;
-
-    private float pos1;
-    private float pos2;
+    public float moveSpeed = 1000f;
+    private int currentNumber = 0;
 
     void Start()
     {
-
-        // if(gameManager == null)
-        // {
-        //     gameManager = GameManager.Instance;
-        // }
-
+        // Initialization code
     }
 
     void Update()
     {
-
-        if(canMove == true && Input.GetKeyDown(KeyCode.RightArrow) && count < moveAmount)
-        {
-            Debug.Log("The player will move now");
-            pos1 = player.position.x;
-            count ++;
-            movePlayer();
-        }
-        
-        if(count > moveAmount)
-        {
-            count = 0;
-            canMove = false;
-            stopPlayer();
-        }
-
-        if(player.position.x >= (pos1 + 147))
-        {
-            stopPlayer();
-        }
+        // Update logic if needed
     }
 
-    public void allowMove(int amount)
+    public void MoveToPosition(Vector3 targetPosition, System.Action onComplete)
     {
-        canMove = true;
-        moveAmount = amount;
-
-        Debug.Log("The player is allowed to move now!");
-
-        // if(Input.GetKeyDown(KeyCode.RightArrow))
-        // {
-        //     player.linearVelocity = Vector2.right * 10;
-
-        // }
-
+        StartCoroutine(MoveToPositionCoroutine(targetPosition, onComplete));
     }
 
-    public void movePlayer()
+    private IEnumerator MoveToPositionCoroutine(Vector3 targetPosition, System.Action onComplete)
     {
-        
-        player.linearVelocity = Vector2.right * moveSpeed;
-
-        Debug.Log("Player moved: " + count + "steps. was allowed to move: " + moveAmount);
+        while ((targetPosition - transform.position).sqrMagnitude > 0.01f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+            yield return null;
+        }
+        transform.position = targetPosition;
+        Debug.Log("Player reached the target position: " + targetPosition);
+        onComplete?.Invoke();
     }
 
-    public void stopPlayer()
+    public int GetCurrentPosition()
     {
-        player.linearVelocity = Vector2.zero;
+        return currentNumber;
+    }
+
+    public void SetCurrentPosition(int position)
+    {
+        currentNumber = position;
     }
 }
