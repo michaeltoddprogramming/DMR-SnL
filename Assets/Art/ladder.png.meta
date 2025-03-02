@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4af2d5dcd8aa9f048824edc781c42280
+guid: eee21f9f7b5558840a9bb7b1bd837c29
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5190299140411600157
-    second: GameBackground_0
+      213: 5266067843512441219
+    second: ladder_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GameBackground_0
+      name: ladder_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2000
-        height: 1414
+        width: 157
+        height: 336
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d1daf3e9195a70840800000000000000
-      internalID: 5190299140411600157
+      spriteID: 3899aa78dc4d41940800000000000000
+      internalID: 5266067843512441219
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: a55be0734571fb44b93f9f46678a02d6
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      GameBackground_0: 5190299140411600157
+      ladder_0: 5266067843512441219
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

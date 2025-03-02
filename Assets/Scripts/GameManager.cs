@@ -24,11 +24,6 @@ public class GameManager : MonoBehaviour
     private List<GameObject> players;
     private int currentPlayerIndex = 0;
     private Dictionary<int, int> snakesAndLadders = new Dictionary<int, int> {
-            { 1, 22 },
-            { 3, 22 },
-            { 4, 22 },
-            { 5, 22 },
-            { 6, 22 },
             { 7, 33 },
             { 19, 76 },
             { 28, 8 },
@@ -43,8 +38,6 @@ public class GameManager : MonoBehaviour
             { 84, 94 },
             { 85, 53 },
             { 91, 69 },
-            { 96, 24 },
-            { 99, 69 }
     };
 
     void Start()

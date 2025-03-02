@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 4af2d5dcd8aa9f048824edc781c42280
+guid: 10f491401ba3aa744a647573537cd416
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5190299140411600157
-    second: GameBackground_0
+      213: 7267689239274680278
+    second: leaves_0
+  - first:
+      213: -6413231621353547766
+    second: leaves_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +129,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GameBackground_0
+      name: leaves_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 2000
-        height: 1414
+        x: 4
+        y: 43
+        width: 173
+        height: 261
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +144,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d1daf3e9195a70840800000000000000
-      internalID: 5190299140411600157
+      spriteID: 6df65e47bd40cd460800000000000000
+      internalID: 7267689239274680278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: leaves_1
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 4
+        width: 197
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a085be2b1df9ff6a0800000000000000
+      internalID: -6413231621353547766
       vertices: []
       indices: 
       edges: []
@@ -160,8 +185,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      GameBackground_0: 5190299140411600157
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

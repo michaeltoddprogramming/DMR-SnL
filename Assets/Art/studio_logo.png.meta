@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 4af2d5dcd8aa9f048824edc781c42280
+guid: 4fc0b705431c249498299740e05680db
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5190299140411600157
-    second: GameBackground_0
+      213: -9081361808158993544
+    second: studio_logo_0
+  - first:
+      213: 1006901624031770611
+    second: studio_logo_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +129,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GameBackground_0
+      name: studio_logo_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 2000
-        height: 1414
+        y: 139
+        width: 43
+        height: 252
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +144,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d1daf3e9195a70840800000000000000
-      internalID: 5190299140411600157
+      spriteID: 87352e3fc8588f180800000000000000
+      internalID: -9081361808158993544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: studio_logo_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 43
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f77d2831bb39fd00800000000000000
+      internalID: 1006901624031770611
       vertices: []
       indices: 
       edges: []
@@ -160,8 +185,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      GameBackground_0: 5190299140411600157
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
