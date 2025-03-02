@@ -45,6 +45,15 @@ public class GridManager : MonoBehaviour
                 tile.position = position;
                 tile.parent = transform;
 
+                // Apply color alternation based on row parity
+                bool isAlternate = (x % 2 == 0) ? startWithAlternate : !startWithAlternate;
+
+                Renderer tileRenderer = tile.GetComponent<Renderer>();
+                if (tileRenderer != null)
+                {
+                    tileRenderer.material.color = isAlternate ? alternateColor1 : alternateColor2;
+                }
+
                 Transform numberTextTransform = tile.Find("NumberText");
                 if (numberTextTransform != null)
                 {
@@ -57,9 +66,7 @@ public class GridManager : MonoBehaviour
                         textComponent.alignment = TextAlignmentOptions.Center;
                         textComponent.enableAutoSizing = true;
                         textComponent.fontSizeMin = 5f;
-                        textComponent.fontSizeMax = 20f;
-                        // Log rendering order details
-                        Renderer tileRenderer = tile.GetComponent<Renderer>();
+                        textComponent.fontSizeMax = 26f;
                     }
                 }
             }
