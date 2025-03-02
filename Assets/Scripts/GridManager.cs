@@ -22,7 +22,6 @@ public class GridManager : MonoBehaviour
         if (tileRenderer != null)
         {
             tileSize = new Vector2(tileRenderer.bounds.size.x, tileRenderer.bounds.size.y);
-            Debug.Log($"Calculated tileSize: {tileSize}");
         }
         else
         {
@@ -40,18 +39,13 @@ public class GridManager : MonoBehaviour
                 tileCount++;
                 int number = GetTileNumber(x, y);
                 Vector3 position = new Vector3(x * tileSize.x, (gridSizeY - 1 - y) * tileSize.y, 0);
-                Debug.Log($"Tile {number} at (x={x}, y={y}) should be at world position {position}");
                 Transform tile = Instantiate(tilePrefab, position, Quaternion.identity);
                 tile.position = position;
-                Debug.Log($"Tile {number} position before parenting: {tile.position}");
                 tile.parent = transform;
-                Debug.Log($"Tile {number} final world position: {tile.TransformPoint(Vector3.zero)}");
 
                 Transform numberTextTransform = tile.Find("NumberText");
                 if (numberTextTransform != null)
                 {
-                    Debug.Log($"NumberText for Tile {number} local position: {numberTextTransform.localPosition}");
-                    Debug.Log($"NumberText for Tile {number} world position: {numberTextTransform.TransformPoint(Vector3.zero)}");
                     TMP_Text textComponent = numberTextTransform.GetComponent<TMP_Text>();
                     if (textComponent != null)
                     {
@@ -67,13 +61,6 @@ public class GridManager : MonoBehaviour
                         textComponent.fontSizeMax = 20f;
                         // Log rendering order details
                         Renderer tileRenderer = tile.GetComponent<Renderer>();
-                        if (tileRenderer != null)
-                        {
-                            Debug.Log($"Tile {number} SpriteRenderer sorting layer: {tileRenderer.sortingLayerName}, order: {tileRenderer.sortingOrder}");
-                        }
-                        Debug.Log($"NumberText for Tile {number} z-position: {numberTextTransform.position.z}");
-                        Debug.Log($"NumberText for Tile {number} font size set to: {textComponent.fontSize}");
-                        Debug.Log($"NumberText for Tile {number} bounds size: {textComponent.bounds.size}");
                     }
                     else
                     {
@@ -86,7 +73,6 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
-        Debug.Log($"Total tiles generated: {tileCount}");
     }
 
     int GetTileNumber(int x, int y)

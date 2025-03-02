@@ -1,63 +1,144 @@
 using UnityEngine;
-using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
-    public GameManager gameManager;
-    public PlayerController playerController;
-
-    public Color playerOneColor;
-    public Color playerTwoColor;
-    public int rollAmount;
-
-    public bool rolled = false;
-
-
-    // THIS AWAKE FUNCTION GUARDS THE SINGLETON INSTANCE OF THE GAME MANAGER
-    // THIS IS TO MAKE SURE THAT THERE IS ONLY ONE INSTANCE OF THE GAME MANAGER
-    private void Awake()
+    public enum PlayerColor
     {
+        Red,
+        Blue,
+        Green,
+        Yellow,
+        Purple,
+        Orange
+    }
 
-        if(gameManager == null)
+    public int numberOfPlayers = 2; // Default number of players
+    public GameObject playerPrefab; // Prefab for player pieces
+    public Transform[] playerStartPositions; // Array of start positions for players
+    public PlayerColor[] playerColors; // Array of player colors
+    public DiceRoller diceRoller; // Reference to the DiceRoller
+
+    private List<GameObject> players;
+    private int currentPlayerIndex = 0;
+
+    void Start()
+    {
+        Debug.Log("GameManager Start() called.");
+        ValidateSetup();
+        InitializePlayers();
+        StartTurn();
+    }
+
+    void ValidateSetup()
+    {
+        Debug.Log($"Number of Players: {numberOfPlayers}");
+        Debug.Log($"Number of Start Positions: {playerStartPositions.Length}");
+        Debug.Log($"Number of Colors: {playerColors.Length}");
+
+        if (playerStartPositions.Length < numberOfPlayers)
         {
-            // Debug.LogError("GameManager reference is misssing!");
+            Debug.LogError("Not enough start positions assigned in the Inspector!");
         }
 
+        if (playerColors.Length < numberOfPlayers)
+        {
+            Debug.LogError("Not enough colors assigned in the Inspector!");
+        }
 
-        // if (Instance == null)
-        // {
-        //     Instance = this;
-        //     DontDestroyOnLoad(gameObject);
-        // }
-        // else
-        // {
-        //     Destroy(gameObject);
-        // }
-
-        // if(playerController == null)
-        // {
-        //     playerController = playerController.Instance;
-        // }
+        for (int i = 0; i < playerStartPositions.Length; i++)
+        {
+            Debug.Log($"Start Position {i}: {playerStartPositions[i].position}");
+        }
     }
 
-    public Color GetCurrentPlayerColor(bool isPlayerOneTurn)
+    void InitializePlayers()
     {
-        return isPlayerOneTurn ? playerOneColor : playerTwoColor;
+        players = new List<GameObject>();
+
+        for (int i = 0; i < numberOfPlayers; i++)
+        {
+            if (i >= playerStartPositions.Length)
+            {
+                Debug.LogError($"Not enough start positions! Tried to access index {i}, but only {playerStartPositions.Length} available.");
+                return;
+            }
+
+            if (i >= playerColors.Length)
+            {
+                Debug.LogError($"Not enough colors! Tried to access index {i}, but only {playerColors.Length} available.");
+                return;
+            }
+
+            Transform startPos = playerStartPositions[i];
+
+            if (startPos == null)
+            {
+                Debug.LogError($"Start position at index {i} is NULL!");
+                return;
+            }
+
+            GameObject player = Instantiate(playerPrefab, startPos.position, Quaternion.identity);
+            players.Add(player);
+            Debug.Log($"Player {i + 1} instantiated at position {player.transform.position}");
+
+            // Assign color to player
+            PlayerColor color = playerColors[i];
+            Renderer renderer = player.GetComponentInChildren<Renderer>();
+
+            if (renderer != null)
+            {
+                renderer.material.color = GetColor(color);
+                Debug.Log($"Player {i + 1} color set to {color}");
+            }
+            else
+            {
+                Debug.LogError($"Renderer not found on player {i + 1}. Check if the playerPrefab has a Renderer component.");
+            }
+        }
     }
 
-    public void UpdateButtonColor(Button button, bool isPlayerOneTurn)
+    Color GetColor(PlayerColor color)
     {
-        Color targetColor = GetCurrentPlayerColor(isPlayerOneTurn);
-        targetColor.a = 1f;
-        Debug.Log("UPDATE BUTTON COLOUR -> " + targetColor);
-
-        button.GetComponent<Image>().color = targetColor;
+        switch (color)
+        {
+            case PlayerColor.Red:
+                return Color.red;
+            case PlayerColor.Blue:
+                return Color.blue;
+            case PlayerColor.Green:
+                return Color.green;
+            case PlayerColor.Yellow:
+                return Color.yellow;
+            case PlayerColor.Purple:
+                return new Color(0.5f, 0f, 0.5f); // Purple
+            case PlayerColor.Orange:
+                return new Color(1f, 0.5f, 0f); // Orange
+            default:
+                return Color.white;
+        }
     }
 
-    public void setDiceRoll(int amount)
+    void StartTurn()
     {
-        rollAmount = amount;
+        Debug.Log($"Player {currentPlayerIndex + 1}'s turn.");
+        diceRoller.SetDiceColor(GetColor(playerColors[currentPlayerIndex]));
+        diceRoller.EnableDice();
+    }
 
-        playerController.allowMove(amount);
+        public void OnDiceRollComplete(int roll)
+    {
+        Debug.Log($"Player {currentPlayerIndex + 1} rolled a {roll}.");
+        
+        // Debug: Print current player index before incrementing
+        Debug.Log($"Current player index before increment: {currentPlayerIndex}");
+        
+        // Move to the next player
+        currentPlayerIndex = (currentPlayerIndex + 1) % numberOfPlayers;
+        
+        // Debug: Print current player index after incrementing
+        Debug.Log($"Current player index after increment: {currentPlayerIndex}");
+        
+        StartTurn();
     }
 }
