@@ -21,6 +21,11 @@ public class GameManager : MonoBehaviour
     public GridManager gridManager; // Reference to the GridManager
     private int numberOfPlayers; // Default to 2 players
 
+    public AudioSource audioSource1;
+    public AudioSource audioSource2;
+    public AudioClip ladderSound1;
+    public AudioClip weeSound;
+
     private List<GameObject> players;
     private int currentPlayerIndex = 0;
     private Dictionary<int, int> snakesAndLadders = new Dictionary<int, int> {
@@ -54,6 +59,19 @@ public class GameManager : MonoBehaviour
         ValidateSetup();
         InitializePlayers();
         StartTurn();
+    }
+
+    void PlayLadderSound()
+    {
+        if (audioSource1 != null && ladderSound1 != null)
+        {
+            audioSource1.PlayOneShot(ladderSound1);
+        }
+        else
+        {
+            Debug.LogWarning("audioSource1 or ladderSound1 not assigned.");
+        }
+
     }
 
     void ValidateSetup()
@@ -195,10 +213,49 @@ public class GameManager : MonoBehaviour
                     Transform finalTile = FindTileWithNumber(finalPosition);
                     if (finalTile != null)
                     {
+                        bool flag = false;
+                        bool flag1 = false;
+                        if(newPosition < finalPosition)
+                        {
+                            flag = true;
+
+                            PlayLadderSound();
+                            Debug.Log("++++++++++++++++++++++++++++++++++++++++++++++ladderCCCCCCCCCCCCCCCCCCCCCCCCC");
+                        }
+
+                        if (finalPosition < newPosition && audioSource2 != null && weeSound != null)
+                        {
+                            flag1 = true;
+                            audioSource2.PlayOneShot(weeSound);
+                            Debug.Log("_____________________________________________________wee______________________________");
+                        }   
                         playerController.MoveToPosition(finalTile.position, () =>
                         {
-                            // Update the player's current position after moving to the final position
+                            if(flag != true && newPosition < finalPosition)
+                            {
+                                PlayLadderSound();
+                            Debug.Log("++++++++++++++++++++++++++++++++++++++++++++++ladderDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+                                flag = false;
+                            }
+
+                            if (finalPosition < newPosition && audioSource2 != null && weeSound != null && flag1 != true)
+                            {
+                                audioSource2.PlayOneShot(weeSound);
+                                Debug.Log("_____________________________________________________wee!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                flag1 = false;
+                            }   
+
                             playerController.SetCurrentPosition(finalPosition);
+
+                            // if(newPosition < finalPosition && flag != true)
+                            // {
+                            //     flag = false;
+                            //     // PlayLadderSound();
+                            // }
+                            // Update the player's current position after moving to the final position
+
+
+
                         });
                     }
                 }

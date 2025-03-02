@@ -14,6 +14,19 @@ public class DiceRoller : MonoBehaviour
 
     public GameManager gameManager; // Reference to the GameManager
 
+    public AudioSource audioSource;
+    // public AudioSource audioSource2;
+    // public AudioSource audioSource3;
+    // public AudioSource audioSource4;
+    // public AudioSource audioSource5;
+    // public AudioSource audioSource6;
+    // public AudioSource audioSource7;
+    // public AudioSource audioSource8;
+    // public AudioSource audioSource9;
+    // public AudioSource audioSource10;
+    // public AudioSource audioSource11;
+    public AudioClip diceRollSound;
+
     /// <summary>
     /// Called from animation event at the start of the dice roll animation
     /// </summary>
@@ -37,7 +50,43 @@ public class DiceRoller : MonoBehaviour
 
     private void Start()
     {
+        // audioSource = GetComponent<AudioSource>();
+        // audioSource2 = GetComponent<AudioSource>();
+        // audioSource3 = GetComponent<AudioSource>();
+        // audioSource4 = GetComponent<AudioSource>();
+        // audioSource5 = GetComponent<AudioSource>();
+        // audioSource6 = GetComponent<AudioSource>();
+        // audioSource7 = GetComponent<AudioSource>();
+        // audioSource8 = GetComponent<AudioSource>();
+        // audioSource9 = GetComponent<AudioSource>();
+        // audioSource10 = GetComponent<AudioSource>();
+        // audioSource11 = GetComponent<AudioSource>();
+
         GetComponent<SpriteRenderer>().gameObject.AddComponent<BoxCollider2D>();
+
+        // audioSource = GetComponent<AudioSource>();
+
+         if (audioSource == null)
+    {
+        Debug.LogError("AudioSource component is missing on the DiceRoller GameObject.");
+    }
+    }
+
+    public void PlayRandomDiceRollSound()
+    {
+            // audioSource.PlayOneShot(diceRollSound);  // Play the single dice roll sound
+        if (audioSource != null && diceRollSound != null)
+        {
+            audioSource.PlayOneShot(diceRollSound);  // Play the single dice roll sound
+        }
+        // if (diceRollSounds.Length > 0)
+        // {
+        //     int randomIndex = Random.Range(0, diceRollSounds.Length);  // Get a random index
+        //     AudioClip clipToPlay = diceRollSounds[randomIndex]; // Select the clip
+            
+        //     // Play the sound at the position of the dice object
+        //     AudioSource.PlayClipAtPoint(clipToPlay, transform.position);
+        // }
     }
 
     private void OnMouseDown()
@@ -74,8 +123,21 @@ public class DiceRoller : MonoBehaviour
 
     public void Roll(int temp)
     {
+
+
+        // int randomIndex = Random.Range(0, diceRollSounds.Length);
+
+        // audioSource.PlayOneShot(diceRollSounds[randomIndex]);
+
+
+
+
         roll = temp;
         Animator animator = GetComponent<Animator>();
+        
+        
+        PlayRandomDiceRollSound();
+
         
         // Start animation - will call AnimationStarted() via event
         animator.Play("Roll", -1, 0f);
@@ -93,6 +155,10 @@ public class DiceRoller : MonoBehaviour
         
         if (animator != null)
         {
+
+            PlayRandomDiceRollSound();
+
+
             // Start animation - should call AnimationStarted() via event
             animator.Play("Roll", -1, 0f);
             
