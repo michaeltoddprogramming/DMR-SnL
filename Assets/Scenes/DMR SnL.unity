@@ -833,6 +833,7 @@ MonoBehaviour:
   - {fileID: 938792691}
   playerColors: 000000000100000002000000030000000400000005000000
   diceRoller: {fileID: 325076447}
+  gridManager: {fileID: 1838751601}
 --- !u!1 &1838751599
 GameObject:
   m_ObjectHideFlags: 0

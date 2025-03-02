@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro; // Add this directive for TMP_Text
 
 public class GameManager : MonoBehaviour
 {
@@ -18,9 +19,32 @@ public class GameManager : MonoBehaviour
     public Transform[] playerStartPositions; // Array of start positions for players
     public PlayerColor[] playerColors; // Array of player colors
     public DiceRoller diceRoller; // Reference to the DiceRoller
+    public GridManager gridManager; // Reference to the GridManager
 
     private List<GameObject> players;
     private int currentPlayerIndex = 0;
+    private Dictionary<int, int> snakesAndLadders = new Dictionary<int, int> {
+            { 1, 22 },
+            { 3, 22 },
+            { 4, 22 },
+            { 5, 22 },
+            { 6, 22 },
+            { 7, 33 },
+            { 19, 76 },
+            { 28, 8 },
+            { 31, 67 },
+            { 37, 14 },
+            { 40, 78 },
+            { 46, 4 },
+            { 52, 32 },
+            { 61, 36 },
+            { 73, 97 },
+            { 81, 99 },
+            { 84, 94 },
+            { 85, 53 },
+            { 91, 69 },
+            { 96, 24 }
+    };
 
     void Start()
     {
@@ -95,6 +119,10 @@ public class GameManager : MonoBehaviour
             {
                 Debug.LogError($"Renderer not found on player {i + 1}. Check if the playerPrefab has a Renderer component.");
             }
+
+            // Initialize player's current position
+            PlayerController playerController = player.GetComponent<PlayerController>();
+            playerController.SetCurrentPosition(0); // Assuming starting position is 0
         }
     }
 
@@ -126,19 +154,76 @@ public class GameManager : MonoBehaviour
         diceRoller.EnableDice();
     }
 
-        public void OnDiceRollComplete(int roll)
+    public void OnDiceRollComplete(int roll)
     {
         Debug.Log($"Player {currentPlayerIndex + 1} rolled a {roll}.");
         
-        // Debug: Print current player index before incrementing
-        Debug.Log($"Current player index before increment: {currentPlayerIndex}");
+        // Move the player based on the roll
+        MovePlayer(currentPlayerIndex, roll);
         
         // Move to the next player
         currentPlayerIndex = (currentPlayerIndex + 1) % numberOfPlayers;
         
-        // Debug: Print current player index after incrementing
-        Debug.Log($"Current player index after increment: {currentPlayerIndex}");
-        
         StartTurn();
+    }
+
+    void MovePlayer(int playerIndex, int roll)
+    {
+        // Get the current player's position
+        PlayerController playerController = players[playerIndex].GetComponent<PlayerController>();
+        int currentPosition = playerController.GetCurrentPosition();
+
+        // Calculate the new position
+        int newPosition = currentPosition + roll;
+
+        // Find the tile with the new position
+        Transform targetTile = FindTileWithNumber(newPosition);
+        if (targetTile != null)
+        {
+            // Move the player to the new position
+            playerController.MoveToPosition(targetTile.position, () =>
+            {
+                // Update the player's current position
+                playerController.SetCurrentPosition(newPosition);
+
+                // Check for snakes and ladders after reaching the new position
+                if (snakesAndLadders.ContainsKey(newPosition))
+                {
+                    int finalPosition = snakesAndLadders[newPosition];
+                    Transform finalTile = FindTileWithNumber(finalPosition);
+                    if (finalTile != null)
+                    {
+                        playerController.MoveToPosition(finalTile.position, () =>
+                        {
+                            // Update the player's current position after moving to the final position
+                            playerController.SetCurrentPosition(finalPosition);
+                        });
+                    }
+                }
+            });
+        }
+        else
+        {
+            Debug.LogError($"Tile with number {newPosition} not found!");
+        }
+
+        Debug.Log($"Moving player {playerIndex + 1} to position {newPosition}.");
+    }
+
+    Transform FindTileWithNumber(int number)
+    {
+        foreach (Transform tile in gridManager.transform)
+        {
+            Transform numberTextTransform = tile.Find("NumberText");
+            if (numberTextTransform != null)
+            {
+                TMP_Text textComponent = numberTextTransform.GetComponent<TMP_Text>();
+                if (textComponent != null && textComponent.text == number.ToString())
+                {
+                    return tile;
+                }
+            }
+        }
+        return null;
     }
 }
