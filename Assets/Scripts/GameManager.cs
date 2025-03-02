@@ -29,6 +29,10 @@ public class GameManager : MonoBehaviour
     private int numberOfPlayers; // Default to 2 players
     public string winSceneName = "Main Menu"; // Name of your win scene
     private bool gameOver = false;
+    public AudioSource audioSource1;
+    public AudioSource audioSource2;
+    public AudioClip ladderSound1;
+    public AudioClip weeSound;
 
     private List<GameObject> players;
     private List<GameObject> sidebarPlayers = new List<GameObject>(); // For sidebar player pieces
@@ -72,6 +76,19 @@ public class GameManager : MonoBehaviour
         ValidateSetup();
         InitializePlayers();
         StartTurn();
+    }
+
+    void PlayLadderSound()
+    {
+        if (audioSource1 != null && ladderSound1 != null)
+        {
+            audioSource1.PlayOneShot(ladderSound1);
+        }
+        else
+        {
+            Debug.LogWarning("audioSource1 or ladderSound1 not assigned.");
+        }
+
     }
 
     // All your existing methods remain the same
@@ -395,9 +412,36 @@ IEnumerator PulseHalo(GameObject halo)
                     Transform finalTile = FindTileWithNumber(finalPosition);
                     if (finalTile != null)
                     {
+                        bool flag = false;
+                        bool flag1 = false;
+                        if(newPosition < finalPosition)
+                        {
+                            flag = true;
+
+                            PlayLadderSound();
+                        }
+
+                        if (finalPosition < newPosition && audioSource2 != null && weeSound != null)
+                        {
+                            flag1 = true;
+                            audioSource2.PlayOneShot(weeSound);
+                            Debug.Log("_wee__");
+                        }
+
                         playerController.MoveToPosition(finalTile.position, () =>
                         {
                             // Update the player's current position after moving to the final position
+                            if(flag != true && newPosition < finalPosition)
+                            {
+                                PlayLadderSound();
+                                flag = false;
+                            }
+
+                            if (finalPosition < newPosition && audioSource2 != null && weeSound != null && flag1 != true)
+                            {
+                                audioSource2.PlayOneShot(weeSound);
+                                flag1 = false;
+                            }
                             playerController.SetCurrentPosition(finalPosition);
                         });
                     }

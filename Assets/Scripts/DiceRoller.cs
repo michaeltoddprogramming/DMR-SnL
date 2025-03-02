@@ -13,6 +13,8 @@ public class DiceRoller : MonoBehaviour
     List<Sprite> die;
 
     public GameManager gameManager; // Reference to the GameManager
+    public AudioSource audioSource;
+    public AudioClip diceRollSound;
 
     /// <summary>
     /// Called from animation event at the start of the dice roll animation
@@ -38,6 +40,13 @@ public class DiceRoller : MonoBehaviour
     private void Start()
     {
         GetComponent<SpriteRenderer>().gameObject.AddComponent<BoxCollider2D>();
+    }
+
+    public void PlayRandomDiceRollSound() {
+        if (audioSource != null && diceRollSound != null)
+        {
+            audioSource.PlayOneShot(diceRollSound);
+        }
     }
 
     private void OnMouseDown()
@@ -78,9 +87,12 @@ public class DiceRoller : MonoBehaviour
         Animator animator = GetComponent<Animator>();
         
         // Start animation - will call AnimationStarted() via event
+        PlayRandomDiceRollSound();
         animator.Play("Roll", -1, 0f);
+
         
         // Don't call ShowRollResult() here - wait for AnimationEnded()
+
     }
 
     public void RollDice()
@@ -94,6 +106,7 @@ public class DiceRoller : MonoBehaviour
         if (animator != null)
         {
             // Start animation - should call AnimationStarted() via event
+            PlayRandomDiceRollSound();
             animator.Play("Roll", -1, 0f);
             
             // Fallback in case animation event isn't configured
